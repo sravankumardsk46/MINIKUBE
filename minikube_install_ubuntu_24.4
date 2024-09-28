@@ -4,3 +4,129 @@ ubuntu os 24.4
 default sg
 create
 ####################
+sudo su
+apt update
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+sudo apt-get update && sudo apt-get install docker.io -y
+systemctl status docker
+
+## minikube install
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+## instaling contract
+sudo apt install conntrack -y
+
+git clone https://github.com/Mirantis/cri-dockerd.git
+###run this comand as root
+## install GO
+
+wget https://storage.googleapis.com/golang/getgo/installer_linux
+chmod +x ./installer_linux
+./installer_linux
+source ~/.bash_profile
+
+cd cri-dockerd
+mkdir bin
+go get && go build -o bin/cri-dockerd
+mkdir -p /usr/local/bin
+install -o root -g root -m 0755 bin/cri-dockerd /usr/local/bin/cri-dockerd
+cp -a packaging/systemd/* /etc/systemd/system
+sed -i -e 's,/usr/bin/cri-dockerd,/usr/local/bin/cri-dockerd,' /etc/systemd/system/cri-docker.service
+systemctl daemon-reload
+systemctl enable cri-docker.service
+systemctl enable --now cri-docker.socket
+
+###  abouve go nat found so i install beloww
+-------------------------------------------------
+sudo apt update
+sudo apt install golang-go
+sudo snap install go --classic
+go version
+cd cri-dockerd
+mkdir bin
+go get && go build -o bin/cri-dockerd
+----------------------------------------------
+VERSION="v1.24.1"
+curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz --output crictl-$VERSION-linux-amd64.tar.gz
+sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+rm -f crictl-$VERSION-linux-amd64.tar.gz
+minikube start --driver=docker
+----------------------------------------------------
+su - son
+  minikube start --driver=docker
+    2  minikube
+    3  kubectl get nods
+    4  minikube status
+    5  minikube start --driver=docker
+    6  minikube start
+    7  sudo usermod -aG docker $USER
+    8  exit
+    9  newgrp docker
+   10  exit
+   11  minikube start --driver=docker
+   12  sudo systemctl start docker
+   13  exit
+   14  docker ps
+   15  groups son
+   16  sudo usermod -aG docker son
+   17  exit
+   18  minikube start --driver=docker
+   19  kubectl get nods
+   20  df -h
+   21  docker system prune -a
+   22  docker system df
+   23  docker volume prune
+   24  sudo du -ah / | sort -rh | head -n 20
+   25  exit
+   26  minikube start --driver=docker
+   27  history
+   ---------------------------------------------
+   sudo su ubuntu
+   root@ip-172-31-39-102:/home/ubuntu# history
+    1  cd cri-dockerd
+    2  VERSION="v1.24.1"
+    3  curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz --output crictl-$VERSION-linux-amd64.tar.gz
+    4  sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+    5  rm -f crictl-$VERSION-linux-amd64.tar.gz
+    6  minikube start --vm-driver=none
+    7  kubectl get nods
+    8  VERSION="v1.24.1"
+    9  curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz --output crictl-$VERSION-linux-amd64.tar.gz
+   10  sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+   11  ls -l
+   12  rm -f crictl-$VERSION-linux-amd64.tar.gz
+   13  ls -l
+   14  minikube start --vm-driver=none
+   15  minikube start --driver=docker
+   16  minikube delete
+   17  minikube start --driver=docker
+   18  kubectl get nods
+   19  minikube status
+   20  minikube start
+   21  su - <your-non-root-user>
+   22  minikube start --driver=docker
+   23  cd /home/ubuntu/
+   24  cat /etc/passwd
+   25  whoami
+   26  minikube start --driver=docker
+   27  adduser ubuntu
+   28  adduser son
+   29  su - son
+   30  sudo usermod -aG docker $USER
+   31  su - son
+   32  newgrp docker
+   33  groups son
+   34  docker ps
+   35  minikube start --driver=docker
+   36  su -son
+   37  su - son
+   38  sudo du -ah / | sort -rh | head -n 20
+   39  sudo apt-get clean
+   40  sudo systemctl restart docker
+   41  df -h
+   42  su - son
+   43  history
+
+
+
