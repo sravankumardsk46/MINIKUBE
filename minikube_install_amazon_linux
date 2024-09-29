@@ -1,0 +1,33 @@
+#################################################################################################################
+
+START ---->  minikube need 2 cpu    and 30 gb valume  t2.medium   
+----------------------------------------------------------------------------------------------------1
+https://minikube.sigs.k8s.io/docs/start/
+## minikube install
+
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64         ### downlode minikube ###
+ sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64         ### install minikube  ###
+--------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------2
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+## kubectl install
+
+ curl -L -s https://dl.k8s.io/release/stable.txt
+ curl -LO https://dl.k8s.io/release/v1.31.0/bin/linux/amd64/kubectl
+
+ sudo chmod +x ./kubectl
+ sudo mv ./kubectl /usr/local/bin/kubectl
+--------------------------------------------------------------------------------------------------------3
+## docker commands work only root user
+sudo yum install -y docker
+sudo usermod -aG docker $USER && newgrp docker
+sudo systemctl start docker && sudo systemctl enable docker
+sudo systemctl start docker && sudo systemctl enable docker
+
+---------------------------------------------------------------------------------4
+minikube start       #### minikube not work as root user ###
+kubectl get pod -A
+minikube dashboard
+
+END TO END <--------
+##################################################################################################################################
