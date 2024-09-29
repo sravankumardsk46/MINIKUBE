@@ -28,6 +28,13 @@ sudo systemctl start docker && sudo systemctl enable docker
 minikube start       #### minikube not work as root user ###
 kubectl get pod -A
 minikube dashboard
+# minikube give u url here
+## copy past google ### http://127.0.0.1:32773/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+
+## open onether cmd give .pem detailes and public ip detailes
+ssh -i your_key.pem -L 8001:127.0.0.1:32773 ec2-user@ec2-public-ip
+## ones login then onli that url dashbord works
+
 
 END TO END <--------
 ##################################################################################################################################
