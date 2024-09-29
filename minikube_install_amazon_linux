@@ -38,3 +38,12 @@ ssh -i your_key.pem -L 8001:127.0.0.1:32773 ec2-user@ec2-public-ip
 
 END TO END <--------
 ##################################################################################################################################
+# minikube not run root
+minikube install one
+kubectl install two
+docker install
+minikube run and give u dashbord
+ssh forword to redirect to ec2 to local machine then only work dash bord
+cmd
+ssh -i your_key.pem -L 8001:127.0.0.1:32773 ec2-user@ec2-public-ip
+########### Done work ######################################3
