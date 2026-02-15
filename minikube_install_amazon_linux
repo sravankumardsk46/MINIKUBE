@@ -31,14 +31,16 @@ sudo systemctl start docker
 sudo usermod -aG docker ec2-user
 newgrp docker
 ---------------------------------------------------------------------------------4
-minikube start       #### minikube not work as root user ###
+minikube start       #### minikube not work as root user ###  you can exicute in ec2-user
 kubectl get pod -A
 minikube dashboard
 # minikube give u url here
 ## copy past google ### http://127.0.0.1:32773/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
 
-## open onether cmd give .pem detailes and public ip detailes
+## open onether cmd give .pem detailes and public ip detailes   # ec2 run terrminal leave it then this cmd run below command here u can create pods 
 ssh -i your_key.pem -L 8001:127.0.0.1:32773 ec2-user@ec2-public-ip
+(OR)
+ssh -i C:\Users\HP\Downloads\minikune.pem -L 8001:127.0.0.1:41897 ec2-user@13.235.62.124     # wer is pem and give port in ec2: 8001 and dashbord show u 41897 and publicip end and 
 ## ones login then onli that url dashbord works
 
 
