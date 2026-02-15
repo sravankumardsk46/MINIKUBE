@@ -18,12 +18,18 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
  sudo chmod +x ./kubectl
  sudo mv ./kubectl /usr/local/bin/kubectl
 --------------------------------------------------------------------------------------------------------3
-## docker commands work only root user
+## docker commands work only ec2-user    # install in ec2-user not root 
 sudo yum install -y docker
 sudo usermod -aG docker $USER && newgrp docker
 sudo systemctl start docker && sudo systemctl enable docker
 sudo systemctl start docker && sudo systemctl enable docker
-
+(OR)
+# Login as ec2-user
+sudo yum install -y docker
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo usermod -aG docker ec2-user
+newgrp docker
 ---------------------------------------------------------------------------------4
 minikube start       #### minikube not work as root user ###
 kubectl get pod -A
